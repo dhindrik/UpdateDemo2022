@@ -1,0 +1,291 @@
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #1F2041;
+    color: #FFFFFF;
+    padding: 0;
+    margin: 0px;
+}
+
+    html * {
+        box-sizing: border-box
+    }
+
+p {
+    margin: auto;
+    max-width: 700px;
+    text-align: left;
+}
+
+    p.center {
+        margin: auto;
+        max-width: 700px;
+        text-align: center;
+    }
+
+#logo {
+    width: 300px;
+}
+
+.btn-link-alternate {
+    color: #4B3F72;
+}
+
+.register {
+    font-size: 30px;
+}
+
+.table-centralised {
+    width: 0 auto;
+    margin: auto;
+    border: none;
+}
+
+    .table-centralised th {
+        text-align: right;
+        width: auto;
+        padding: 3px;
+        border: none;
+    }
+
+    .table-centralised td {
+        text-align: left;
+        width: auto;
+        padding: 3px;
+        border: none;
+    }
+
+#site {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0px;
+}
+
+header {
+    background-color: white;
+    width: 100%;
+    color: black;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 150px;
+}
+
+.avatar-big {
+    border-radius: 50%;
+    width: 300px;
+}
+
+a, .btn-link {
+    color: #FFC857;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+
+table {
+    margin: auto;
+    background-color: #4B3F72;
+    color: #FFFFFF;
+}
+
+td, th {
+    padding: 10px;
+}
+
+td {
+    text-align: left
+}
+
+    td.center, th.center {
+        text-align: center
+    }
+
+    td.left, th.left, td.left h3 {
+        text-align: left
+    }
+
+table, th, td {
+    border: 1px solid #1F2041;
+    border-collapse: collapse;
+}
+
+
+
+.speaker-list {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: auto;
+}
+
+    .speaker-list button {
+        background-color: transparent;
+        border: none;
+    }
+
+.primarybox {
+    background-color: #4B3F72;
+    padding: 20px 80px;
+    text-align: center;
+}
+
+.alternatebox {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    color: black;
+}
+
+    .alternatebox a {
+        color: #4B3F72
+    }
+
+.alternateboxh2 {
+    color: black;
+}
+
+
+
+.speaker {
+    padding: 10px;
+}
+
+.sponsor {
+    height: 100px;
+    object-fit: contain;
+    width: 300px;
+}
+
+#skyline {
+    background-image: url('../skyline.jpg');
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+#videoskyline {
+    background-image: url('../videobg.png');
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+.social {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+
+button {
+    background-color: #FFC857;
+    border-color: #FFC857;
+    color: #4B3F72;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+    button:disabled {
+        cursor: default;
+        color: #000000;
+    }
+
+.primarybox button {
+    color: #FFFFFF;
+}
+
+.primarybox button:disabled {
+    color: #000000;
+}
+
+
+.stream-services {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+    .stream-services .btn-link {
+        margin: -10px 20px 10px 10px
+    }
+
+
+app {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+
+.youtube {
+    width: 888px;
+    height: 500px;
+}
+
+@media (max-width: 1000px) {
+    .youtube {
+        width: 600px;
+        height: 388px;
+    }
+
+    #videoskyline {
+        height:388px;
+    }
+}
+
+    @media (max-width: 767.98px) {
+        .primarybox {
+            padding: 40px 20px;
+        }
+
+        .alternatebox {
+            background-color: white;
+            padding: 20px 20px;
+            text-align: center;
+            color: black;
+        }
+
+        .youtube {
+            width: 300px;
+            height: 168px;
+        }
+
+        #videoskyline {
+            height: 168px;
+        }
+    }
+
+    @media (min-width: 768px) {
+    }

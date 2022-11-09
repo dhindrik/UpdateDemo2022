@@ -1,0 +1,15 @@
+{
+  "name": "",
+  "short_name": "",
+  "icons": [
+    {
+      "src": "/SquareFrontendDay.svg",
+      "sizes": "48x48 72x72 96x96 128x128 256x256", //see the size in the devtools, not in editor. I've set up size 1200x1200 in Illustrator, but Chrome says it's 150x150. Also, "sizes":"any" not work.
+      "type": "image/svg+xml", //not image/svg which is still visible in web
+      "purpose": "any" //not "maskable any" as you may see there in answers.
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

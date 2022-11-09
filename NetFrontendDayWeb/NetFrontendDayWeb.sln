@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFrontendDayWeb", "NetFrontendDayWeb\NetFrontendDayWeb.csproj", "{9823E22D-7F7A-4BEE-A1B4-AD76B3DF03CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFrontendDayApp", "NetFrontendDayApp\NetFrontendDayApp.csproj", "{04C0A609-FA6D-4200-B2E8-DD81D68EE5A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFrontendDayCore", "NetFrontendDayCore\NetFrontendDayCore.csproj", "{188E7536-56A6-40FC-BDCC-719D3FF2F090}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9823E22D-7F7A-4BEE-A1B4-AD76B3DF03CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9823E22D-7F7A-4BEE-A1B4-AD76B3DF03CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9823E22D-7F7A-4BEE-A1B4-AD76B3DF03CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9823E22D-7F7A-4BEE-A1B4-AD76B3DF03CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04C0A609-FA6D-4200-B2E8-DD81D68EE5A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04C0A609-FA6D-4200-B2E8-DD81D68EE5A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04C0A609-FA6D-4200-B2E8-DD81D68EE5A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04C0A609-FA6D-4200-B2E8-DD81D68EE5A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{188E7536-56A6-40FC-BDCC-719D3FF2F090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{188E7536-56A6-40FC-BDCC-719D3FF2F090}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{188E7536-56A6-40FC-BDCC-719D3FF2F090}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{188E7536-56A6-40FC-BDCC-719D3FF2F090}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

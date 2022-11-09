@@ -1,0 +1,156 @@
+﻿@using NetFrontendDayWeb.Models
+
+@page "/"
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime;
+@inject NetFrontendDayWeb.Services.ISpeakerService SpeakerService
+<HeadContent>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.dotnet-frontend.com" />
+    <meta property="og:title" content=".NET Frontend Day" />
+    <meta property="og:description" content="A full day online, with a focus on building frontend applications using .NET!" />
+    <meta property="og:image" content="https://www.dotnet-frontend.com/twittercard.png" />
+    <meta property="og:image:secure_url" content="https://www.dotnet-frontend.com/twittercard.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="418" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.dotnet-frontend.com" />
+    <meta property="twitter:title" content=".NET Frontend Day" />
+    <meta property="twitter:description" content="A full day online, with a focus on building frontend applications using .NET!" />
+    <meta property="twitter:image" content="https://www.dotnet-frontend.com/twittercard.png" />
+
+    
+    <meta name="title" content=".NET Frontend Day">
+    <meta name="description" content="A full day online, with a focus on building frontend applications using .NET!">
+
+</HeadContent>
+<PageTitle>.NET Frontend Day</PageTitle>
+<div id="skyline">
+    @*<video class="youtube" autoplay="autoplay" muted loop autopictureinpicture>
+
+        <source src="https://cdn-dotnet-frontend.azureedge.net/videos/promo-2022.mp4"
+                type="video/mp4">
+    </video>*@
+</div>
+
+<article class="primarybox">
+
+    <h2>A full day online, with focus on building frontend applications using .NET!</h2>
+
+
+    @*<h2>10 February 2022</h2>*@
+    <span><b>Stay tuned for information about .NET Frontend Day 2023. We will be back!</b></span>
+
+    <a href="https://youtube.com/playlist?list=PLRPCjWNXEQguKsiM-TXedb8fRL7LjnBM5"><h3>Watch the recordings from .NET Frontend Day 2022</h3></a>
+
+    @*<a href="https://dotnet-frontend2022.eventbrite.com" target="_blank" class="btn-link register"><h3>Register here</h3></a>
+
+    <a href="https://www.youtube.com/watch?v=Vaubu_Q9pyE" class="btn-link register"><h3>Watch the event on YouTube</h3></a>
+    <a href="https://www.twitch.tv/codingafterwork" class="btn-link register"><h3>Watch the event on Twitch</h3></a>*@
+</article>
+
+<article class="alternatebox">
+
+    <h2 id="speakers">Speakers</h2>
+    <span>We are right now working with booking speakers for .NET Frontend Day 2023</span>
+    @*<div class="speaker-list">
+        @foreach (var speaker in speakers)
+        {
+            <SpeakerBadge SpeakerInfo="@speaker" Click="@OpenSpeaker" />
+        }
+    </div>*@
+
+    @*<p class="center">More speakers will be presented later.</p>*@
+
+    @*<h3>Call For Papers</h3>
+        <p class="center">Do you want to speak at .NET Frontend Day 2022?</p>
+        <a href="https://sessionize.com/dotnet-frontend-2022/" target="_blank" class="btn-link-alternate">
+            <h3>Submit your sessions here</h3>
+        </a>*@
+
+    @*<a href="/schedule/2022" class="btn-link-alternate">
+            <h3>Show schedule</h3>
+        </a>*@
+
+</article>
+
+<article class="primarybox">
+    <h2>2022</h2>
+    <a href="/speakers/2022" class="btn-link">
+        <h3>Show speakers</h3>
+    </a>
+
+    <a href="https://youtube.com/playlist?list=PLRPCjWNXEQguKsiM-TXedb8fRL7LjnBM5" target="_blank" class="btn-link"><h3>Show recordings</h3></a>
+
+    <h2>2021</h2>
+    <a href="/speakers/2021" class="btn-link">
+        <h3>Show speakers</h3>
+    </a>
+
+    <a href="https://www.youtube.com/watch?v=HwefEPGe6ho&list=PLRPCjWNXEQguH9vngwbcjJGPWp6gm4X06" target="_blank" class="btn-link"><h3>Show recordings</h3></a>
+</article>
+
+<article class="alternatebox">
+
+    <h2>Organizers</h2>
+
+    <div class="speaker-list">
+
+        <button @onclick="@(e => OpenOrganizer("jessica"))">
+            <div class="speaker">
+                <img class="avatar" alt="Jessica Engström" src="jessica.jpeg" />
+                <h3>Jessica Engström</h3>
+            </div>
+        </button>
+
+        <button @onclick="@(e => OpenOrganizer("jimmy"))">
+            <div class="speaker">
+                <img class="avatar" alt="Jimmy Engström" src="jimmy.jpeg" />
+                <h3>Jimmy Engström</h3>
+            </div>
+        </button>
+        <button @onclick="@(e => OpenOrganizer("daniel"))">
+            <div class="speaker">
+                <img class="avatar" alt="Daniel Hindrikes" src="daniel.jpg" />
+                <h3>Daniel Hindrikes</h3>
+            </div>
+        </button>
+    </div>
+</article>
+
+
+@code{
+
+    List<SpeakerInfo> speakers = new List<SpeakerInfo>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        speakers.Clear();
+
+      //  var result = await SpeakerService.GetSpeakers(2022);
+
+       // speakers.AddRange(result);
+    }
+
+    private void OpenSpeaker(string id)
+    {
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            return;
+        }
+
+        NavigationManager.NavigateTo($"/speaker/{id}/2022");
+    }
+
+    private void OpenOrganizer(string name)
+    {
+        NavigationManager.NavigateTo($"/organizer/{name}");
+    }
+    }
+

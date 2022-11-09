@@ -1,0 +1,42 @@
+﻿@using NetFrontendDayWeb.Models
+
+@page "/speakers/{year}"
+
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime;
+@inject NetFrontendDayWeb.Services.ISpeakerService SpeakerService
+
+<article class="primarybox">
+
+    <h2 id="speakers">Speakers @Year</h2>
+
+    <div class="speaker-list">
+        @foreach (var speaker in speakers)
+        {
+        <SpeakerBadge SpeakerInfo="@speaker" Click="@OpenSpeaker" />
+        }
+    </div>
+
+  
+
+</article>
+
+@code {
+    [Parameter]
+    public string Year { get; set; }
+
+    IEnumerable<SpeakerInfo> speakers = new List<SpeakerInfo>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        speakers = await SpeakerService.GetSpeakers(int.Parse(Year));
+    }
+
+    private void OpenSpeaker(string id)
+    {
+
+        NavigationManager.NavigateTo($"/speaker/{id}/{Year}");
+    }
+}

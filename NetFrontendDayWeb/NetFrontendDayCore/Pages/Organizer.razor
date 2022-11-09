@@ -1,0 +1,37 @@
+﻿@page "/organizer/{name}"
+
+
+@inject NetFrontendDayWeb.Services.ISpeakerService SpeakerService
+@inject NavigationManager NavigationManager
+
+@using NetFrontendDayWeb.Models
+
+<article class="primarybox">
+    <h2>@Item.Name</h2>
+
+    <img class="avatar-big" alt="@Item.Name" src="@Item.ProfilePicture" />
+    <h3>@Item.Tagline</h3>
+    <p>
+        @Item.Bio
+    </p>
+    <br />
+    @foreach (var link in Item.Links)
+    {
+        <span><b>@link.Title: </b></span> <a href="@link.Url" target="_blank">@link.Url</a><br />
+    }
+
+</article>
+
+
+@code {
+    [Parameter]
+    public string Name { get; set; }
+    private SpeakerInfo Item { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        Item = await SpeakerService.GetOrganizer(Name);
+    }
+}

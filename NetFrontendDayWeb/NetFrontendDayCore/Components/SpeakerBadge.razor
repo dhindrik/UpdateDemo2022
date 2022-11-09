@@ -1,0 +1,15 @@
+﻿<button @onclick="@(e => Click(SpeakerInfo.Id))" disabled="@string.IsNullOrWhiteSpace(SpeakerInfo.Id)">
+    <div class="speaker">
+        <img class="avatar" alt="@SpeakerInfo.Name" src="@SpeakerInfo.ProfilePicture" />
+        <h3>@SpeakerInfo.Name</h3>
+    </div>
+</button>
+
+@code {
+    [Parameter]
+    public SpeakerInfo SpeakerInfo { get; set; } = new SpeakerInfo();
+
+    [Parameter]
+    public Action<string> Click { get; set; }
+    }
+

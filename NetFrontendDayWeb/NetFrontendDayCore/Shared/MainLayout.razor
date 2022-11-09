@@ -1,0 +1,26 @@
+﻿@inherits LayoutComponentBase
+
+    <div id="site">
+        <header>
+            <h1><NavLink href="/">
+                <img id="logo" src="FrontenddayLogoPurple_Height60.png" alt=".NET Frontend Day" /></NavLink></h1>
+        </header>
+        <section>
+            @Body
+
+            <article class="alternatebox">
+                <Social />
+            </article>
+            <article class="primarybox">
+                <h2>About</h2>
+                    .NET Frontend Day is a community organized conference.<br/>
+                    To get in touch with us send an email to: <a href="mailto:info@dotnet-frontend.com">info@dotnet-frontend.com</a>
+            </article>
+            <article class="alternatebox">
+                <Sponsors />
+            </article>
+            <article class="primarybox">
+                <Partners />
+            </article>
+        </section>
+    </div>

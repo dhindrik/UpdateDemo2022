@@ -1,0 +1,111 @@
+﻿@page "/speaker/{id}/{year}"
+@inject NetFrontendDayWeb.Services.ISpeakerService SpeakerService
+@inject NavigationManager NavigationManager
+
+    <PageTitle>@title</PageTitle>
+
+@if (Item != null)
+{
+    <HeadContent>
+        <meta property="og:image" content="@Item.ProfilePicture" />
+        <!-- Open Graph / Facebook -->
+        <meta property="og:url" content="https://www.dotnet-frontend.com" />
+        <meta property="og:description" content="@shortBio" />
+        <meta property="og:image" content="@Item?.ProfilePicture" />
+        <meta property="og:title" content="@title" />
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://www.dotnet-frontend.com" />
+        <meta property="twitter:title" content="@title" />
+        <meta property="twitter:description" content="@shortBio" />
+        <meta property="twitter:image" content="@Item?.ProfilePicture" />
+    </HeadContent>
+    <article class="primarybox">
+
+        <h2>@Item.Name</h2>
+
+        <img class="avatar-big" alt="@Item.Name" src="@Item.ProfilePicture" />
+        <h3>@Item.Tagline</h3>
+        <p>
+            @((MarkupString)Item.Bio?.Replace("\n", "<br/>"))
+        </p>
+        <br />
+
+        <div class="text-center">
+            <table class="table-centralised" border="0">
+                <tbody>
+                    @if (Item.Links != null)
+                    {
+                        @foreach (var link in Item.Links)
+                        {
+                            <tr>
+                                <th>@link.Title:</th>
+                                <td><a href="@link.Url" target="_blank">@link.Url</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </article>
+    <article class="alternatebox">
+        <h2>Sessions</h2>
+        @if (Item.Sessions != null)
+        {
+            @foreach (var session in Item.Sessions)
+            {
+                <h3>@session.Title</h3>
+                <p>@((MarkupString)session.Description.Replace("\n", "<br/>"))</p>
+            }
+        }
+    </article>
+}
+<article class="primarybox">
+
+    <h2 id="speakers">Other speakers</h2>
+
+    <div class="speaker-list">
+        @foreach (var speaker in speakers)
+        {
+            <SpeakerBadge SpeakerInfo="@speaker" Click="@OpenSpeaker" />
+        }
+    </div>
+</article>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    [Parameter]
+    public string Year { get; set; }
+
+    private string title = string.Empty;
+
+    public SpeakerInfo Item { get; set; }
+
+    private string shortBio = string.Empty;
+
+    IEnumerable<SpeakerInfo> speakers = new List<SpeakerInfo>();
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        speakers = await SpeakerService.GetSpeakers(int.Parse(Year));
+
+        Item = await SpeakerService.GetSpeaker(Id, int.Parse(Year));
+
+        title = $".NET Frontend Day - {Item.Name}";
+
+        var endIndex = Item.Bio.Length > 100 ? 100 : Item.Bio.Length - 1;
+        shortBio = Item.Bio.Substring(0, endIndex);
+    }
+
+    private void OpenSpeaker(string id)
+    {
+
+        NavigationManager.NavigateTo($"/speaker/{id}/{Year}");
+    }
+
+}

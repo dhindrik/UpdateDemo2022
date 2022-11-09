@@ -1,0 +1,193 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+        <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+        <!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+        <OutputType>Exe</OutputType>
+        <RootNamespace>NetFrontendDayApp</RootNamespace>
+        <UseMaui>true</UseMaui>
+        <SingleProject>true</SingleProject>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <EnableDefaultCssItems>false</EnableDefaultCssItems>
+
+        <!-- Display name -->
+        <ApplicationTitle>NetFrontendDayApp</ApplicationTitle>
+
+        <!-- App Identifier -->
+        <ApplicationId>com.companyname.netfrontenddayapp</ApplicationId>
+        <ApplicationIdGuid>9F827477-9909-419A-8F0D-6C2733993C5B</ApplicationIdGuid>
+
+        <!-- Versions -->
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>1</ApplicationVersion>
+
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+        <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
+      <CreatePackage>false</CreatePackage>
+    </PropertyGroup>
+    <ItemGroup>
+        <!-- App Icon -->
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+        <!-- Splash Screen -->
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+        <!-- Images -->
+        <MauiFont Include="Resources\Fonts\*" />
+
+        <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NetFrontendDayCore\NetFrontendDayCore.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <MauiImage Include="Resources\Images\dotnet_bot.svg" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Remove="wwwroot\css\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="wwwroot\css\" />
+      <Folder Include="Services\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="..\NetFrontendDayWeb\wwwroot\css\site.css">
+        <Link>wwwroot\css\site.css</Link>
+      </Content>
+      <Content Include="..\NetFrontendDayWeb\wwwroot\SquareFrontendDay.svg">
+        <Link>wwwroot\SquareFrontendDay.svg</Link>
+      </Content>
+      <Content Include="..\NetFrontendDayWeb\wwwroot\site.webmanifest">
+        <Link>wwwroot\site.webmanifest</Link>
+      </Content>
+      <Content Include="..\NetFrontendDayWeb\wwwroot\FrontenddayLogoPurple.svg">
+        <Link>wwwroot\FrontenddayLogoPurple.svg</Link>
+      </Content>
+      <Content Include="..\NetFrontendDayWeb\wwwroot\FrontenddayLogo.svg">
+        <Link>wwwroot\FrontenddayLogo.svg</Link>
+      </Content>
+      <Content Include="..\NetFrontendDayWeb\wwwroot\FrontenddayLogo.psd">
+        <Link>wwwroot\FrontenddayLogo.psd</Link>
+      </Content>
+      <Content Include="..\NetFrontendDayWeb\wwwroot\FavIconFrontendDay_32.ico">
+        <Link>wwwroot\FavIconFrontendDay_32.ico</Link>
+      </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\background.png">
+        <Link>wwwroot\background.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\1337.png">
+        <Link>wwwroot\1337.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\beach.jpg">
+        <Link>wwwroot\beach.jpg</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\syncfusion.png">
+        <Link>wwwroot\syncfusion.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\videobg.png">
+        <Link>wwwroot\videobg.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\TwitterCard.png">
+        <Link>wwwroot\TwitterCard.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\FrontenddayLogoPurple_Width300.png">
+        <Link>wwwroot\FrontenddayLogoPurple_Width300.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\FrontenddayLogoPurple_Height60.png">
+        <Link>wwwroot\FrontenddayLogoPurple_Height60.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\FrontenddayLogoBlack_Width300.png">
+        <Link>wwwroot\FrontenddayLogoBlack_Width300.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\FrontenddayLogoBlack_Height60.png">
+        <Link>wwwroot\FrontenddayLogoBlack_Height60.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\FavIconFrontendDay_64.png">
+        <Link>wwwroot\FavIconFrontendDay_64.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\FavIconFrontendDay_32_N.png">
+        <Link>wwwroot\FavIconFrontendDay_32_N.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\FavIconFrontendDay_32.png">
+        <Link>wwwroot\FavIconFrontendDay_32.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\FavIconFrontendDay_192.png">
+        <Link>wwwroot\FavIconFrontendDay_192.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\FavIconFrontendDay_180.png">
+        <Link>wwwroot\FavIconFrontendDay_180.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\FavIconFrontendDay_16_N.png">
+        <Link>wwwroot\FavIconFrontendDay_16_N.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\FavIconFrontendDay_16.png">
+        <Link>wwwroot\FavIconFrontendDay_16.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\skyline.jpg">
+        <Link>wwwroot\skyline.jpg</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\Progress_Brandmark_RGB_Primary_Alternate.png">
+        <Link>wwwroot\Progress_Brandmark_RGB_Primary_Alternate.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\Progress_Brandmark_RGB_Primary.png">
+        <Link>wwwroot\Progress_Brandmark_RGB_Primary.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\packt.png">
+        <Link>wwwroot\packt.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\microsoft.png">
+        <Link>wwwroot\microsoft.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\maddy.jpg">
+        <Link>wwwroot\maddy.jpg</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\kompilator.png">
+        <Link>wwwroot\kompilator.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\jimmy.jpeg">
+        <Link>wwwroot\jimmy.jpeg</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\jessica.jpeg">
+        <Link>wwwroot\jessica.jpeg</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\if.png">
+        <Link>wwwroot\if.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\david.png">
+        <Link>wwwroot\david.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\daniel.jpg">
+        <Link>wwwroot\daniel.jpg</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\caw.png">
+        <Link>wwwroot\caw.png</Link>
+      </BundleResource>
+      <BundleResource Include="..\NetFrontendDayWeb\wwwroot\aic.png">
+        <Link>wwwroot\aic.png</Link>
+      </BundleResource>
+    </ItemGroup>
+    <ItemGroup>
+      <MauiXaml Update="AppShell.xaml">
+        <SubType></SubType>
+      </MauiXaml>
+      <MauiXaml Update="SpeakersPage.xaml">
+        <SubType></SubType>
+      </MauiXaml>
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Services\" />
+    </ItemGroup>
+</Project>

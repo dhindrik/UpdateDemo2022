@@ -1,0 +1,37 @@
+﻿@page "/recordings"
+@inject NetFrontendDayWeb.Services.ISpeakerService SpeakerService
+
+<PageTitle>.NET Frontend Day - Recordings</PageTitle>
+    <article class="primarybox">
+        <h2>Recordings</h2>
+    </article>
+
+    @for (var i = 0; i < recordings.Count; i++)
+    {
+        var recording = recordings[i];
+
+        var className = "primarybox";
+
+        if (i % 2 == 0)
+        {
+            className = "alternatebox";
+        }
+
+        <article class="@className">
+            <h3>@recording.Speaker</h3>
+            <h4>@recording.Session</h4>
+            <iframe class="youtube" src="@recording.YouTubeUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </article>
+    }
+
+
+    @code {
+        private List<Recording> recordings;
+
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+
+            recordings = await SpeakerService.GetRecordings("012021");
+        }
+    }

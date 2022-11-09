@@ -1,0 +1,86 @@
+﻿@page "/schedule/{year}"
+@page "/schedule"
+
+@inject IJSRuntime JSRuntime;
+
+@inject NetFrontendDayWeb.Services.ISpeakerService SpeakerService
+<PageTitle>.NET Frontend Day - Schedule</PageTitle>
+<article class="primarybox">
+    <h2>Schedule @Date</h2>
+    <text>Times is shown for the timezone: @timeZoneName</text>
+    <br />
+    <br />
+    <table>
+        <thead>
+            <tr>
+                <th class="center">Start time</th>
+                <th class="left">Session</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (schedule != null)
+            {
+                @foreach (var session in schedule.Rooms[0].Sessions)
+                {
+                    <tr>
+                        <td class="center">
+                            <b>@session.StartsAt.Value.AddMinutes(offset).ToShortTimeString()</b>
+                        </td>
+                        <td class="left">
+
+                            <h3>@session.Title</h3>
+                            @foreach (var speaker in session.Speakers)
+                            {
+                                var path = $"/speaker/{@speaker.InternalId}/{int.Parse(Year)}";
+
+                                <a href="@path"><b>@speaker.Name</b></a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</article>
+
+
+
+
+
+@code {
+
+    private NetFrontendDayWeb.Models.Schedule schedule;
+    private string Date => schedule != null ? schedule.Date.Value.LocalDateTime.ToShortDateString() : string.Empty;
+    private int offset = 0;
+    private string timeZoneName = string.Empty;
+
+    [Parameter]
+    public string Year { get; set; } = "2022";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        if(string.IsNullOrWhiteSpace(Year))
+            {
+            Year = "2022";
+        }
+
+        schedule = await SpeakerService.GetSchedule(int.Parse(Year));
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var utcOffset = (await JSRuntime.InvokeAsync<int>("getTimezoneOffset"));
+
+            offset = -60 - utcOffset;
+
+
+            timeZoneName = await JSRuntime.InvokeAsync<string>("getTimezoneName");
+            timeZoneName = timeZoneName.Replace("_", " ");
+            StateHasChanged();
+        }
+    }
+}
