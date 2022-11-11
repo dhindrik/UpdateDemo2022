@@ -34,6 +34,9 @@
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
       <CreatePackage>false</CreatePackage>
     </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+      <CreatePackage>false</CreatePackage>
+    </PropertyGroup>
     <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -184,6 +187,9 @@
         <SubType></SubType>
       </MauiXaml>
       <MauiXaml Update="SpeakersPage.xaml">
+        <SubType></SubType>
+      </MauiXaml>
+      <MauiXaml Update="SponsorPage.xaml">
         <SubType></SubType>
       </MauiXaml>
     </ItemGroup>

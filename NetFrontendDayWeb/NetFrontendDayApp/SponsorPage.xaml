@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NetFrontendDayApp.SponsorPage"
+             xmlns:components="clr-namespace:NetFrontendDayCore.Components;assembly=NetFrontendDayCore"
+             Title="SponsorPage"
+             BackgroundColor="White">
+    <VerticalStackLayout>
+        <Label Text="Sponsors" FontSize="Title" TextColor="Black" HorizontalOptions="Center" Margin="20" />
+
+
+        <BlazorWebView HostPage="wwwroot/index.html" HeightRequest="500">
+            <BlazorWebView.RootComponents>
+                <RootComponent x:Name="Root" Selector="#app" ComponentType="{x:Type components:Sponsors}" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+
+    </VerticalStackLayout>
+
+</ContentPage>

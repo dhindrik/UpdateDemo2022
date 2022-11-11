@@ -7,5 +7,6 @@
    <TabBar>
     <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Title="Home" />
     <ShellContent ContentTemplate="{DataTemplate local:SpeakersPage}" Title="Speakers" />
+       <ShellContent ContentTemplate="{DataTemplate local:SponsorPage}" Title="Sponsors" />
    </TabBar>
 </Shell>
